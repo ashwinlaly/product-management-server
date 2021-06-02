@@ -1,0 +1,69 @@
+type Query {
+    info: [String]
+    feeds(filter:String, skip: Int, take: Int, orderBy: LinkOrderByInput): Feed!
+    products(id:Int): [Product]!
+    users: [User!]!
+    categories: [Category]!
+}
+
+type Mutation {
+    createUser(name:String!, age:Int!, email: String!, password:String!): User!
+    createCategory(name:String!): Category!
+    createProduct(name:String!,price:Float!,categoryId:Int!): Product!
+    createLink(url:String!, description:String!, postedBy:Int!): Link!
+    signin(email:String!, password:String!): AuthPayload!
+    signup(name:String!, age:Int!, email: String!, password:String!): AuthPayload!
+    test(demo:String):String
+}
+
+type Subscription {
+    newLink: Link
+}
+
+input LinkOrderByInput {
+    id: Sort
+    url: Sort
+    description: Sort
+}
+
+enum Sort {
+    asc, desc
+}
+
+type Feed {
+    links: [Link]!
+    count: Int!
+}
+
+type Link {
+    id: ID!
+    description: String!
+    url: String!
+    postedBy: User
+}
+
+type Product {
+    id: ID!
+    name: String!
+    price: Float!
+    category: Category
+}
+
+type User {
+    id: ID!
+    name: String!
+    age: Int!
+    email: String!
+    links: [Link!]!
+}
+
+type Category {
+    id: ID!
+    name: String!
+}
+
+type AuthPayload {
+    token: String
+    status: Int!
+    message: String!
+}
