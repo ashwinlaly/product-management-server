@@ -1,4 +1,5 @@
 const info = () => null
+const test = () => null
 
 const feeds = (parent, args, context) => {
     where = (args)?
@@ -29,6 +30,7 @@ const categories = (parent, args, context) => {
 }
 
 module.exports = {
+    test,
     info,
     feeds,
     users,

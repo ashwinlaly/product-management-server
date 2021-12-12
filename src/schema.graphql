@@ -4,6 +4,7 @@ type Query {
     products(id:Int): [Product]!
     users: [User!]!
     categories: [Category]!
+    test: [String]
 }
 
 type Mutation {
